@@ -52,8 +52,13 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Object get(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (index < 0 || index >= size())
+			throw new IndexOutOfBoundsException();
+		Node current = root;
+		for (int i = 0; i < index; i++) {
+			current = current.getNext();
+		}
+		return current.getData();
 	}
 
 	@Override
