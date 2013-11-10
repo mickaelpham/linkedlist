@@ -64,8 +64,19 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Auto-generated method stub
-		return false;
+		if (root == null)
+			return false;
+		else if (root.getNext() == null)
+			return (o.equals(root.getData()));
+		else {
+			Node current = root;
+			while (current != null) {
+				if (o.equals(current.getData()))
+					return true;
+				current = current.getNext();
+			}
+			return false;
+		}
 	}
 
 	@Override

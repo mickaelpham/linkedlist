@@ -1,6 +1,8 @@
 package eu.mpham.linkedlist.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -155,6 +157,21 @@ public class LinkedListImplTest {
 		int i = 0;
 		for (String d : modifiedData)
 			assertEquals(d, ll.get(i++));
+	}
+	
+	/**
+	 * Test if the list contains an element
+	 */
+	@Test
+	public void testContainsElement() {
+		String[] data = { "Banana", "Apple", "Orange", "Watermelon" };
+		LinkedList ll = new LinkedListImpl();
+		// add them all to the linked list
+		for (String d : data)
+			ll.add(d);
+		assertEquals(data.length, ll.size());
+		assertFalse(ll.contains("Coconut"));
+		assertTrue(ll.contains("Watermelon"));
 	}
 
 }
