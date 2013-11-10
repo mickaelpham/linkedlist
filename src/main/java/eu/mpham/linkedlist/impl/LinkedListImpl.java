@@ -34,8 +34,23 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void add(int index, Object e) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
+		if (index < 0 || index > size())
+			throw new IndexOutOfBoundsException();
 
+		if (index == 0) {
+			// edge case: adding as the first element
+			Node next = root;
+			root = new Node(e);
+			root.setNext(next);
+			
+		} else {
+			// insert the new node in between
+			Node previous = findAt(index - 1);
+			Node n = new Node(e);
+			n.setNext(previous.getNext());
+			previous.setNext(n);
+		}
+		this.size++;
 	}
 
 	@Override
@@ -54,11 +69,7 @@ public class LinkedListImpl implements LinkedList {
 	public Object get(int index) throws IndexOutOfBoundsException {
 		if (index < 0 || index >= size())
 			throw new IndexOutOfBoundsException();
-		Node current = root;
-		for (int i = 0; i < index; i++) {
-			current = current.getNext();
-		}
-		return current.getData();
+		return findAt(index).getData();
 	}
 
 	@Override
@@ -85,6 +96,20 @@ public class LinkedListImpl implements LinkedList {
 		} else {
 			return current;
 		}
+	}
+
+	/**
+	 * Find the node at the given index position
+	 * 
+	 * @param index
+	 *            Node position to return
+	 * @return the node at the given index position
+	 */
+	private Node findAt(int index) {
+		Node current = root;
+		for (int i = 0; i < index; i++)
+			current = current.getNext();
+		return current;
 	}
 
 }
