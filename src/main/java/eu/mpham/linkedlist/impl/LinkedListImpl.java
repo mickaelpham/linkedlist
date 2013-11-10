@@ -55,7 +55,10 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
+		this.size = 0;
+		// assuming the JVM and GC will take care of all the remaining nodes
+		// since they are not referenced anymore, this should be enough
+		this.root = null;
 
 	}
 

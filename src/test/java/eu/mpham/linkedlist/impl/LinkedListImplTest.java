@@ -97,5 +97,23 @@ public class LinkedListImplTest {
 		for (String d : modifiedData)
 			assertEquals(d, ll.get(i++));
 	}
+	
+	/**
+	 * Test clear method
+	 */
+	public void testClearLinkedList() {
+		String[] data = { "Banana", "Apple", "Orange", "Watermelon" };
+		LinkedList ll = new LinkedListImpl();
+		// add them all to the linked list
+		for (String d : data)
+			ll.add(d);
+		assertEquals(data.length, ll.size());
+		ll.clear();
+		assertEquals(0, ll.size());
+		String element = "Coconut";
+		ll.add(element);
+		assertEquals(1, ll.size());
+		assertEquals(element, ll.get(0));
+	}
 
 }
