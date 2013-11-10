@@ -101,6 +101,7 @@ public class LinkedListImplTest {
 	/**
 	 * Test clear method
 	 */
+	@Test
 	public void testClearLinkedList() {
 		String[] data = { "Banana", "Apple", "Orange", "Watermelon" };
 		LinkedList ll = new LinkedListImpl();
@@ -114,6 +115,46 @@ public class LinkedListImplTest {
 		ll.add(element);
 		assertEquals(1, ll.size());
 		assertEquals(element, ll.get(0));
+	}
+	
+	/**
+	 * Try removing the root element
+	 */
+	@Test
+	public void testRemoveRootElement() {
+		String[] data = { "Banana", "Apple", "Orange", "Watermelon" };
+		LinkedList ll = new LinkedListImpl();
+		// add them all to the linked list
+		for (String d : data)
+			ll.add(d);
+		assertEquals(data.length, ll.size());
+		// try removing the root element
+		ll.remove(0);
+		assertEquals(data.length - 1, ll.size());
+		// make sure the new root element is correct
+		assertEquals(data[1], ll.get(0));
+	}
+	
+	/**
+	 * Try removing an element in the middle
+	 */
+	@Test
+	public void testRemoveMiddleElement() {
+		String[] data = { "Banana", "Apple", "Orange", "Watermelon" };
+		LinkedList ll = new LinkedListImpl();
+		// add them all to the linked list
+		for (String d : data)
+			ll.add(d);
+		assertEquals(data.length, ll.size());
+		// try removing the 2nd element
+		String removed = (String) ll.remove(1);
+		assertEquals(data.length - 1, ll.size());
+		// make sure the removed one is correct
+		assertEquals(data[1], removed);
+		String[] modifiedData = { "Banana", "Orange", "Watermelon" };
+		int i = 0;
+		for (String d : modifiedData)
+			assertEquals(d, ll.get(i++));
 	}
 
 }

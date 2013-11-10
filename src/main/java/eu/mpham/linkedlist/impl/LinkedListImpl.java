@@ -77,8 +77,19 @@ public class LinkedListImpl implements LinkedList {
 
 	@Override
 	public Object remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		if (index < 0 || index >= size())
+			throw new IndexOutOfBoundsException();
+		Node removed;
+		if (index == 0) {
+			removed = root;
+			root = removed.getNext();
+		} else {
+			Node previous = findAt(index - 1);
+			removed = previous.getNext();
+			previous.setNext(removed.getNext());
+		}
+		size--;
+		return removed.getData();
 	}
 
 	@Override
